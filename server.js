@@ -4,7 +4,7 @@
 //Packages should be a dependency in the package.json 
 var express = require('express');
 var http = require('http');
-var url = requiree('url');
+var url = require('url');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
@@ -21,12 +21,23 @@ var router = express.Router();
 app.post('/posts', function(req,res){
     //If no headers or body say so
     if(req.headers.empty){
-        res.send("no headers sent");
+        res.send("No headers sent");
     } else{
-        res.send("Headers sent, lets read them out");
+        var myHeaders = req.headers;
+        Object.keys(myHeaders).forEach(function(key){
+            console.log("Header Key: " + key + "    Value: " + myHeaders[key]);
+            res.write("Header Key: " + key + "    Value: " + myHeaders[key] + '</br>');
+        });
     }
-
-
+    if(req.body.empty){
+         res.send("No body sent");
+    } else{
+        var myBody = req.body;
+        Object.keys(myBody).forEach(function(key){
+            console.log("Body Key: " + key + "    Value: " + myBody[key]);
+            res.write("Body Key: " + key + "    Value: " + myBody[key] + '</br>');
+        });       
+    }
 });
 
 
