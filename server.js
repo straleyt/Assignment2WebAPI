@@ -44,7 +44,7 @@ app.post('/posts', function(req,res){
 });
 
 
-app.post('/gets', function(req,res){
+app.get('/gets', function(req,res){
     //If no headers or body say so
     if(req.headers.empty){
         res.send("No headers sent");
